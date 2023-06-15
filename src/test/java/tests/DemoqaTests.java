@@ -1,34 +1,55 @@
+package tests;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
+import pages.TestBase;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class DemoqaTests {
-    @BeforeAll
-    static void beforeAll() {
-        //Configuration.browser="firefox";
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadTimeout = 50000;
-    }
+public class DemoqaTests extends TestBase{
+
 
     @Test
     void registrationFormPage() {
-        open("/automation-practice-form");
-        executeJavaScript("$('footer').remove()");
+        String userName = "Ilon";
+        String userLastName = "Mask";
+        String userEmail = "Mask@gmail.com";
+        String userGender = "Female";
+        String userNumber = "1234567890";
+        String userSubjects = "Maths";
+        String userHobbies = "Reading";
+        String userCurrentAddress = "Heel";
+        String userState = "Haryana";
+        String userCity = "Karnal";
 
-        $("#firstName").setValue("Ilon");
+        registrationPage.openPage()
+                .setFirstName(userName)
+                .setLastName(userLastName)
+                .setEmail(userEmail)
+                .setGender(userGender)
+                .setNumber(userNumber)
+                .setDateOfBirth("01","June","2000")
+                .setSubjects(userSubjects)
+                .setHobbies(userHobbies)
+                .uploadPicture()
+                .setCurrentAddress(userCurrentAddress)
+                .setState(userState)
+                .setCity(userCity)
+                .clickSubmit();
+
+        /*$("#firstName").setValue("Ilon");
         $("#lastName").setValue("Mask");
         $("#userEmail").setValue("Mask@gmail.com");
         $("#genterWrapper").$(byText("Female")).click();
         $("#userNumber").setValue("1234567890");
         $("#dateOfBirthInput").click();
-        $("[aria-label=\"Choose Tuesday, June 13th, 2023\"]").click();
+        $("[aria-label='Choose Tuesday, June 13th, 2023']").click();
         $("#subjectsInput").setValue("Maths").pressEnter();
         $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#uploadPicture").uploadFromClasspath("img/umbrella.png");
@@ -37,7 +58,7 @@ public class DemoqaTests {
         $("#stateCity-wrapper").$(byText("Haryana")).click();
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Karnal")).click();
-        $("#submit").click();
+        $("#submit").click();*/
 
         //Проверка на появление элемента
         $(".modal-dialog").shouldBe(Condition.appear);

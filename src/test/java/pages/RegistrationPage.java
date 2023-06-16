@@ -1,13 +1,19 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.ResultsTableComponent;
+import pages.components.SelectComponent;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
     public CalendarComponent calenderComponent = new CalendarComponent();
+    public SelectComponent selectComponent = new SelectComponent();
+    public ResultsTableComponent resultsTableComponent = new ResultsTableComponent();
     private SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
@@ -18,12 +24,15 @@ public class RegistrationPage {
             hobbiesInput = $("#hobbiesWrapper"),
             uploadPictureInput = $("#uploadPicture"),
             currentAddressInput = $("#currentAddress"),
-            setStateInput = $("#stateCity-wrapper"),
-            setCityInput = $("#stateCity-wrapper"),
-            clickSubmitInput = $("#submit");
+            stateInput = $("#stateCity-wrapper"),
+            cityInput = $("#stateCity-wrapper"),
+            submitInput = $("#submit"),
+            practiceFormCheck = $(".practice-form-wrapper"),
+            exampleModalCheck = $("#example-modal-sizes-title-lg");
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+        practiceFormCheck.shouldHave(text("Student Registration Form"));
         executeJavaScript("$('footer').remove()");
 
         return this;
@@ -78,8 +87,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage uploadPicture() {
-        uploadPictureInput.uploadFromClasspath("img/umbrella.png");
+    public RegistrationPage uploadPicture(String value) {
+        uploadPictureInput.uploadFromClasspath(value);
 
         return this;
     }
@@ -92,20 +101,34 @@ public class RegistrationPage {
 
     public RegistrationPage setState(String value) {
         $("#state").click();
-        setStateInput.$(byText(value)).click();
+        stateInput.$(byText(value)).click();
 
         return this;
     }
 
     public RegistrationPage setCity(String value) {
         $("#city").click();
-        setCityInput.$(byText(value)).click();
+        selectComponent.setStateCity(value);
+        //cityInput.$(byText(value)).click();
 
         return this;
     }
 
     public RegistrationPage clickSubmit() {
-        clickSubmitInput.click();
+        submitInput.click();
+
+        return this;
+    }
+
+    public RegistrationPage openTable(){
+        $(".modal-dialog").shouldBe(Condition.appear); //Проверка на появление элемента
+        exampleModalCheck.shouldHave(text("Thanks for submitting the form"));
+
+        return this;
+    }
+
+    public RegistrationPage checkResult(String key, String value){
+        resultsTableComponent.checkResult(key, value);
 
         return this;
     }

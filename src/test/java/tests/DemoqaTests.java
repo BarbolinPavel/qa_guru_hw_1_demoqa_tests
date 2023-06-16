@@ -37,33 +37,22 @@ public class DemoqaTests extends TestBase{
                 .setDateOfBirth("01","June","2000")
                 .setSubjects(userSubjects)
                 .setHobbies(userHobbies)
-                .uploadPicture()
+                .uploadPicture("img/umbrella.png")
                 .setCurrentAddress(userCurrentAddress)
                 .setState(userState)
                 .setCity(userCity)
-                .clickSubmit();
+                .clickSubmit()
+                .openTable();
 
-        /*$("#firstName").setValue("Ilon");
-        $("#lastName").setValue("Mask");
-        $("#userEmail").setValue("Mask@gmail.com");
-        $("#genterWrapper").$(byText("Female")).click();
-        $("#userNumber").setValue("1234567890");
-        $("#dateOfBirthInput").click();
-        $("[aria-label='Choose Tuesday, June 13th, 2023']").click();
-        $("#subjectsInput").setValue("Maths").pressEnter();
-        $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#uploadPicture").uploadFromClasspath("img/umbrella.png");
-        $("#currentAddress").setValue("Heel");
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText("Haryana")).click();
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText("Karnal")).click();
-        $("#submit").click();*/
-
-        //Проверка на появление элемента
-        $(".modal-dialog").shouldBe(Condition.appear);
-
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Ilon"), text("Mask"), text("Mask@gmail.com"));
+        registrationPage.checkResult("Student Name", userName + " " + userLastName)
+                .checkResult("Student Email", userEmail)
+                .checkResult("Gender", userGender)
+                .checkResult("Mobile", userNumber)
+                .checkResult("Date of Birth", "01 June,2000")
+                .checkResult("Subjects", userSubjects)
+                .checkResult("Hobbies", userHobbies)
+                .checkResult("Picture", "umbrella.png")
+                .checkResult("Address", userCurrentAddress)
+                .checkResult("State and City", userState + " " + userCity);
     }
 }

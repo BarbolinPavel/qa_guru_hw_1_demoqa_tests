@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.TestBase;
+import pages.components.RandomUtilsFaker;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -17,14 +18,14 @@ public class DemoqaTests extends TestBase{
 
     @Test
     void registrationFormPage() {
-        String userName = "Ilon";
-        String userLastName = "Mask";
-        String userEmail = "Mask@gmail.com";
+        String userName = RandomUtilsFaker.getName();
+        String userLastName = RandomUtilsFaker.getLastName();
+        String userEmail = RandomUtilsFaker.getEmail();
         String userGender = "Female";
-        String userNumber = "1234567890";
+        String userNumber = RandomUtilsFaker.getNumber();
         String userSubjects = "Maths";
         String userHobbies = "Reading";
-        String userCurrentAddress = "Heel";
+        String userCurrentAddress = RandomUtilsFaker.getAddress();
         String userState = "Haryana";
         String userCity = "Karnal";
 

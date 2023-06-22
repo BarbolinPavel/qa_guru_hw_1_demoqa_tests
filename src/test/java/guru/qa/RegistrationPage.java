@@ -1,10 +1,10 @@
-package pages;
+package guru.qa;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import pages.components.CalendarComponent;
-import pages.components.ResultsTableComponent;
-import pages.components.SelectComponent;
+import guru.qa.components.CalendarComponent;
+import guru.qa.components.ResultsTableComponent;
+import guru.qa.components.SelectComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;

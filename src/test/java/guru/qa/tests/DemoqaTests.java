@@ -1,16 +1,8 @@
-package tests;
+package guru.qa.tests;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPage;
-import pages.TestBase;
-import pages.components.RandomUtilsFaker;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import guru.qa.TestBase;
+import guru.qa.components.RandomUtilsFaker;
 
 
 public class DemoqaTests extends TestBase{

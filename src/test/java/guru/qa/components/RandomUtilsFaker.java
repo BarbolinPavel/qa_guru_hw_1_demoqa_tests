@@ -1,4 +1,4 @@
-package pages.components;
+package guru.qa.components;
 
 import com.github.javafaker.Faker;
 

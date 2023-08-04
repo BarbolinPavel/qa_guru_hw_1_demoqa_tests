@@ -1,5 +1,6 @@
 package guru.qa.tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import guru.qa.TestBase;
 import guru.qa.components.RandomUtilsFaker;
@@ -7,7 +8,7 @@ import guru.qa.components.RandomUtilsFaker;
 
 public class DemoqaTests extends TestBase{
 
-
+    @Tag("regTest")
     @Test
     void registrationFormPage() {
         String userName = RandomUtilsFaker.getName();

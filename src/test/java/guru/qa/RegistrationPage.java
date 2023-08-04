@@ -33,6 +33,7 @@ public class RegistrationPage {
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         practiceFormCheck.shouldHave(text("Student Registration Form"));
+        executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
         return this;
@@ -109,7 +110,6 @@ public class RegistrationPage {
     public RegistrationPage setCity(String value) {
         $("#city").click();
         selectComponent.setStateCity(value);
-        //cityInput.$(byText(value)).click();
 
         return this;
     }

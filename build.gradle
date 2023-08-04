@@ -27,7 +27,9 @@ dependencies {
             "org.junit.jupiter:junit-jupiter:5.9.2",
             'io.qameta.allure:allure-selenide:2.19.0',
             "org.slf4j:slf4j-simple:2.0.6",
-            'com.github.javafaker:javafaker:1.0.2'
+            'com.github.javafaker:javafaker:1.0.2',
+            'org.assertj:assertj-core:3.23.1',
+            'org.aspectj:aspectjweaver:1.9.9.1'
     )
 }
 

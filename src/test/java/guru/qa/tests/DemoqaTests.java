@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import guru.qa.TestBase;
 import guru.qa.components.RandomUtilsFaker;
 
+import static io.qameta.allure.Allure.step;
+
 
 public class DemoqaTests extends TestBase{
 
@@ -22,31 +24,38 @@ public class DemoqaTests extends TestBase{
         String userState = "Haryana";
         String userCity = "Karnal";
 
-        registrationPage.openPage()
-                .setFirstName(userName)
-                .setLastName(userLastName)
-                .setEmail(userEmail)
-                .setGender(userGender)
-                .setNumber(userNumber)
-                .setDateOfBirth("01","June","2000")
-                .setSubjects(userSubjects)
-                .setHobbies(userHobbies)
-                .uploadPicture("img/umbrella.png")
-                .setCurrentAddress(userCurrentAddress)
-                .setState(userState)
-                .setCity(userCity)
-                .clickSubmit()
-                .openTable();
+        step("Open page",()->{
+            registrationPage.openPage();
+        });
 
-        registrationPage.checkResult("Student Name", userName + " " + userLastName)
-                .checkResult("Student Email", userEmail)
-                .checkResult("Gender", userGender)
-                .checkResult("Mobile", userNumber)
-                .checkResult("Date of Birth", "01 June,2000")
-                .checkResult("Subjects", userSubjects)
-                .checkResult("Hobbies", userHobbies)
-                .checkResult("Picture", "umbrella.png")
-                .checkResult("Address", userCurrentAddress)
-                .checkResult("State and City", userState + " " + userCity);
+        step("Fill form",()->{
+            registrationPage.setFirstName(userName)
+                    .setLastName(userLastName)
+                    .setEmail(userEmail)
+                    .setGender(userGender)
+                    .setNumber(userNumber)
+                    .setDateOfBirth("01","June","2000")
+                    .setSubjects(userSubjects)
+                    .setHobbies(userHobbies)
+                    .uploadPicture("img/umbrella.png")
+                    .setCurrentAddress(userCurrentAddress)
+                    .setState(userState)
+                    .setCity(userCity)
+                    .clickSubmit()
+                    .openTable();
+        });
+
+        step("Verify results",()->{
+            registrationPage.checkResult("Student Name", userName + " " + userLastName)
+                    .checkResult("Student Email", userEmail)
+                    .checkResult("Gender", userGender)
+                    .checkResult("Mobile", userNumber)
+                    .checkResult("Date of Birth", "01 June,2000")
+                    .checkResult("Subjects", userSubjects)
+                    .checkResult("Hobbies", userHobbies)
+                    .checkResult("Picture", "umbrella.png")
+                    .checkResult("Address", userCurrentAddress)
+                    .checkResult("State and City", userState + " " + userCity);
+        });
     }
 }

@@ -15,12 +15,11 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
         Configuration.baseUrl = System.getProperty("baseUrl","https://demoqa.com");
         Configuration.browser = System.getProperty("browser","chrome");
         Configuration.browserVersion = System.getProperty("browserVersion","99");
         Configuration.browserSize = System.getProperty("browserSize","1920x1080");
-        Configuration.remote = System.getProperty("remote","https://user1:1234@selenoid.autotests.cloud/wd/hub");
+        Configuration.remote = System.getProperty("remoteUrl","https://user1:1234@selenoid.autotests.cloud/wd/hub");
 
 
 
